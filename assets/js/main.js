@@ -118,4 +118,123 @@
       if (history.replaceState) history.replaceState(null, '', id);
     });
   });
+
+  // Waitlist form: accessible inline validation and honest endpoint handling.
+  const waitlistForm = document.querySelector('[data-waitlist-form]');
+
+  if (waitlistForm) {
+    const fields = [...waitlistForm.querySelectorAll('input, select, textarea')];
+    const feedback = waitlistForm.querySelector('[data-form-feedback]');
+    const success = waitlistForm.querySelector('[data-form-success]');
+    const submitButton = waitlistForm.querySelector('[data-waitlist-submit]');
+
+    // Keep native browser validation when JavaScript is unavailable.
+    // Once this handler is active, render validation messages beside each field.
+    waitlistForm.noValidate = true;
+
+    const messageFor = (field) => {
+      if (field.validity.valueMissing) return 'Please complete this field.';
+      if (field.validity.typeMismatch) return 'Please enter a valid email address.';
+      if (field.validity.patternMismatch) return 'Please check the format and try again.';
+      if (field.validity.tooShort) return 'Please enter a little more information.';
+      return '';
+    };
+
+    const validateField = (field) => {
+      const error = waitlistForm.querySelector(
+        '[data-error-for="' + field.name + '"]'
+      );
+      const message = messageFor(field);
+
+      field.setAttribute('aria-invalid', message ? 'true' : 'false');
+
+      if (error) {
+        error.textContent = message;
+      }
+
+      return !message;
+    };
+
+    fields.forEach((field) => {
+      field.addEventListener('input', () => validateField(field));
+      field.addEventListener('change', () => validateField(field));
+      field.addEventListener('blur', () => validateField(field));
+    });
+
+    waitlistForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      if (feedback) {
+        feedback.hidden = true;
+        feedback.textContent = '';
+      }
+      if (success) {
+        success.hidden = true;
+      }
+
+      const invalidFields = fields.filter((field) => !validateField(field));
+
+      if (invalidFields.length) {
+        invalidFields[0].focus();
+        return;
+      }
+
+      const endpoint = (waitlistForm.getAttribute('action') || '').trim();
+      const endpointIsPlaceholder = !endpoint || /\{\{[^}]+\}\}/.test(endpoint);
+
+      if (endpointIsPlaceholder) {
+        if (feedback) {
+          feedback.textContent =
+            'The waitlist form is being connected. Please reach us directly using the contact options below.';
+          feedback.hidden = false;
+        }
+        return;
+      }
+
+      const originalLabel = submitButton ? submitButton.textContent : '';
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending…';
+      }
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          body: new FormData(waitlistForm),
+          headers: { Accept: 'application/json' }
+        });
+
+        if (!response.ok) {
+          throw new Error('The form service returned an unsuccessful response.');
+        }
+
+        waitlistForm.reset();
+        fields.forEach((field) => {
+          field.setAttribute('aria-invalid', 'false');
+          const error = waitlistForm.querySelector(
+            '[data-error-for="' + field.name + '"]'
+          );
+          if (error) error.textContent = '';
+        });
+
+        if (success) {
+          success.textContent = "You're on the list. We'll be in touch.";
+          success.hidden = false;
+          success.focus?.();
+        }
+      } catch (error) {
+        if (feedback) {
+          feedback.textContent =
+            'We could not submit your details just now. Please contact us directly using the options below.';
+          feedback.hidden = false;
+        }
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalLabel;
+        }
+      }
+    });
+  }
+
 })();
