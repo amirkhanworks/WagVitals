@@ -28,7 +28,7 @@ jobs:
       - name: Check out pushed commit
         uses: actions/checkout@v4
         with:
-          ref: \${{ github.sha }}
+          ref: ${{ github.sha }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -37,7 +37,7 @@ jobs:
 
       - name: Wait for the pushed commit to reach GitHub Pages
         env:
-          GITHUB_SHA: \${{ github.sha }}
+          GITHUB_SHA: ${{ github.sha }}
         run: |
           node <<'NODE'
           const url = 'https://amirkhanworks.github.io/WagVitals/contact.html?qa=' + process.env.GITHUB_SHA;
