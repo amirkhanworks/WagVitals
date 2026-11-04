@@ -1825,3 +1825,30 @@ textarea.form-control { min-height: 145px; resize: vertical; }
   display: none !important;
 }
 
+
+
+/* Product page final CTA follows the cream/white section rhythm. */
+.product-final-cta {
+  background: var(--color-cream);
+}
+
+/* Alternate the Home feature image placement; stack image first on mobile. */
+.lost-mode-grid > .reveal:first-child {
+  grid-column: 2;
+  grid-row: 1;
+}
+.lost-mode-grid > .reveal:last-child {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+@media (max-width: 767px) {
+  .lost-mode-grid > .reveal:first-child {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .lost-mode-grid > .reveal:last-child {
+    grid-column: 1;
+    grid-row: 1;
+  }
+}
