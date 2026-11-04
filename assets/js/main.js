@@ -192,6 +192,7 @@
 
     waitlistForm.addEventListener('submit', async (event) => {
       event.preventDefault();
+      waitlistForm.removeAttribute('data-submitted');
 
       if (feedback) {
         feedback.hidden = true;
@@ -249,6 +250,7 @@
         if (success) {
           success.textContent = "You're on the list. We'll be in touch.";
           success.hidden = false;
+          waitlistForm.setAttribute('data-submitted', 'true');
           success.focus?.();
         }
       } catch (error) {
