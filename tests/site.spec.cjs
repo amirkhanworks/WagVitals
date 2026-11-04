@@ -37,6 +37,8 @@ test.describe('WagVitals page health', () => {
 
       const footerLogo = page.locator('.site-footer .brand--footer img');
       await expect(footerLogo).toHaveAttribute('alt', 'WagVitals');
+      await footerLogo.scrollIntoViewIfNeeded();
+      await expect.poll(() => footerLogo.evaluate(img => img.complete)).toBe(true);
       const footerMetrics = await footerLogo.evaluate(img => ({
         complete: img.complete,
         naturalWidth: img.naturalWidth,
