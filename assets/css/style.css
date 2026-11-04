@@ -1957,3 +1957,29 @@ textarea.form-control { min-height: 145px; resize: vertical; }
     font-size: .75rem;
   }
 }
+
+
+/* QA hardening: prevent narrow-screen header and form grid overflow. */
+.waitlist-intro,
+.waitlist-card,
+.waitlist-form,
+.waitlist-form .form-grid {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.waitlist-card {
+  width: 100%;
+}
+
+@media (max-width: 380px) {
+  /* Keep the horizontal brand mark intact on very narrow phones.
+     Move the secondary CTA into the opened mobile menu instead of clipping it. */
+  .site-header .header-cta {
+    display: none;
+  }
+
+  .site-header .site-nav .mobile-menu-cta {
+    display: inline-flex;
+  }
+}

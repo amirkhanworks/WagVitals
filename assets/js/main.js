@@ -172,6 +172,12 @@
     // Once this handler is active, render validation messages beside each field.
     waitlistForm.noValidate = true;
 
+    // The site has no waitlist provider configured yet. The visible button is
+    // type=button so a no-JS visitor can never trigger a GET/POST containing PII.
+    if (submitButton) {
+      submitButton.addEventListener('click', () => waitlistForm.requestSubmit());
+    }
+
     const messageFor = (field) => {
       if (field.validity.valueMissing) return 'Please complete this field.';
       if (field.validity.typeMismatch) return 'Please enter a valid email address.';
@@ -226,7 +232,7 @@
       if (endpointIsPlaceholder) {
         if (feedback) {
           feedback.textContent =
-            'The waitlist form is being connected. Please reach us directly using the contact options below.';
+            'The online waitlist form is not connected yet. Your details have not been sent. Please use WhatsApp, phone or email below to request launch updates.';
           feedback.hidden = false;
         }
         return;
