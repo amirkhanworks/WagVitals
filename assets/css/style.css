@@ -20,7 +20,7 @@
   --font-body: 'Inter', Arial, sans-serif;
   --content-width: 1120px;
   --copy-width: 640px;
-  --header-height: 82px;
+  --header-height: 88px;
   --section-space: clamp(76px, 9vw, 124px);
   --radius-card: 24px;
   --radius-image: 28px;
@@ -60,6 +60,22 @@ button, a { -webkit-tap-highlight-color: transparent; }
   outline: 3px solid var(--color-coral-text);
   outline-offset: 4px;
 }
+
+.skip-link {
+  position: absolute;
+  z-index: 1100;
+  top: 8px;
+  left: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--color-ink);
+  color: var(--color-white);
+  font-size: .9rem;
+  font-weight: 700;
+  transform: translateY(-160%);
+  transition: transform .2s ease;
+}
+.skip-link:focus { transform: translateY(0); }
 ::selection { background: rgba(255, 107, 69, .2); }
 
 h1, h2, h3, p { margin-top: 0; }
@@ -286,6 +302,23 @@ p { margin-bottom: 1.2em; }
 .photo-frame--hero { aspect-ratio: 1 / 1.04; }
 .photo-frame--wide { aspect-ratio: 1.48 / 1; }
 .photo-frame--hero img { object-position: center; }
+
+.photo-frame.is-image-missing {
+  display: grid;
+  min-height: 220px;
+  place-items: center;
+  background: linear-gradient(145deg, #F1E8DE, #E7DACE);
+  box-shadow: none;
+}
+.photo-frame.is-image-missing::after {
+  padding: 20px;
+  color: var(--color-muted-text);
+  content: 'Dog photography to be added';
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  text-align: center;
+}
 
 /* Hero */
 .hero {
@@ -611,7 +644,7 @@ textarea.form-control { min-height: 145px; resize: vertical; }
 
 /* Responsive rules */
 @media (max-width: 900px) {
-  :root { --header-height: 76px; }
+  :root { --header-height: 88px; }
   .hero-grid { grid-template-columns: 1fr 1fr; gap: 38px; }
   .why-layout { grid-template-columns: 1fr 1.3fr; gap: 40px; }
   .lost-mode-grid { gap: 42px; }
@@ -620,7 +653,7 @@ textarea.form-control { min-height: 145px; resize: vertical; }
 }
 
 @media (max-width: 767px) {
-  :root { --header-height: 72px; --section-space: 76px; }
+  :root { --header-height: 78px; --section-space: 76px; }
   body { font-size: 16px; }
   .container { width: min(calc(100% - 40px), var(--content-width)); }
   .header-inner { gap: 14px; }
