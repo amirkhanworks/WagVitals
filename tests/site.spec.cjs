@@ -113,9 +113,10 @@ test('contact links are real and the unconfigured form never transmits visitor d
 
   await page.goto('contact.html', { waitUntil: 'networkidle' });
 
-  await expect(page.locator('a[href="https://wa.me/918446244214"]')).toBeVisible();
-  await expect(page.locator('a[href="tel:+918446244214"]')).toBeVisible();
-  await expect(page.locator('a[href="mailto:amirwagvitals@gmail.com"]')).toBeVisible();
+  const directContact = page.locator('.contact-tiles');
+  await expect(directContact.locator('a[href="https://wa.me/918446244214"]')).toBeVisible();
+  await expect(directContact.locator('a[href="tel:+918446244214"]')).toBeVisible();
+  await expect(directContact.locator('a[href="mailto:amirwagvitals@gmail.com"]')).toBeVisible();
 
   const form = page.locator('[data-waitlist-form]');
   await expect(form).toBeVisible();
