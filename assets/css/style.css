@@ -620,7 +620,6 @@ p { margin-bottom: 1.2em; }
   width: auto;
   height: 24px;
 }
-.footer-brand p { margin: 14px 0 0; color: var(--color-muted-text); font-size: .88rem; }
 .footer-links-wrap {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1874,5 +1873,87 @@ textarea.form-control { min-height: 145px; resize: vertical; }
   }
   .faq-item[open]::details-content {
     height: auto;
+  }
+}
+
+
+/* WagVitals brand asset placement — source artwork is never filtered or stretched. */
+.site-header .brand--header {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 0;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+}
+
+.site-header .brand--header img {
+  display: block;
+  width: auto;
+  height: 32px;
+  max-width: none;
+  object-fit: contain;
+}
+
+.footer-brand .brand--footer {
+  display: inline-flex;
+  width: auto;
+  min-width: 0;
+  height: 68px;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 0 18px;
+  padding: 0;
+}
+
+.footer-brand .brand--footer img {
+  display: block;
+  width: auto;
+  height: 68px;
+  max-width: none;
+  object-fit: contain;
+}
+
+.not-found-inner .brand--404 {
+  display: flex;
+  width: auto;
+  min-width: 0;
+  height: 96px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 28px;
+  padding: 0;
+}
+
+.not-found-inner .brand--404 img {
+  display: block;
+  width: auto;
+  height: 96px;
+  max-width: none;
+  object-fit: contain;
+}
+
+@media (max-width: 767px) {
+  .site-header .brand--header img {
+    height: 28px;
+  }
+  .header-inner {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-header .brand--header {
+    padding: 6px;
+  }
+  .header-inner {
+    gap: 6px;
+  }
+  .header-cta {
+    min-height: 44px;
+    padding: 8px 10px;
+    font-size: .75rem;
   }
 }
