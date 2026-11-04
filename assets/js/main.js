@@ -148,6 +148,16 @@
     });
   });
 
+  // Keep the native FAQ disclosure state explicit for assistive technology.
+  document.querySelectorAll('.faq-item').forEach((detail) => {
+    const summary = detail.querySelector('summary');
+    if (!summary) return;
+    summary.setAttribute('aria-expanded', String(detail.open));
+    detail.addEventListener('toggle', () => {
+      summary.setAttribute('aria-expanded', String(detail.open));
+    });
+  });
+
   // Waitlist form: accessible inline validation and honest endpoint handling.
   const waitlistForm = document.querySelector('[data-waitlist-form]');
 
