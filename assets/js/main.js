@@ -101,7 +101,8 @@
         closeMenu({ returnFocus: true });
       }
       if (event.key === 'Tab') {
-        const focusable = [...siteNav.querySelectorAll('a[href], button:not([disabled])')];
+        const focusable = [...siteNav.querySelectorAll('a[href], button:not([disabled])')]
+          .filter((element) => element.getClientRects().length > 0);
         if (!focusable.length) return;
         const first = focusable[0];
         const last = focusable[focusable.length - 1];
