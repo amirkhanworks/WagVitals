@@ -6,9 +6,26 @@
   const header = document.querySelector('[data-site-header]');
   const menuToggle = document.querySelector('[data-menu-toggle]');
   const siteNav = document.querySelector('[data-site-nav]');
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reducedMotion = Boolean(
+    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  );
 
   body.classList.add('js-ready');
+
+  // Keep planned dog-photo slots tidy until the real photos are supplied.
+  document.querySelectorAll('.photo-frame img').forEach((image) => {
+    const markPhotoMissing = () => {
+      const frame = image.closest('.photo-frame');
+      if (!frame) return;
+      frame.classList.add('is-image-missing');
+      frame.setAttribute('role', 'img');
+      frame.setAttribute('aria-label', image.alt || 'Dog photography to be added');
+      image.style.display = 'none';
+    };
+
+    image.addEventListener('error', markPhotoMissing, { once: true });
+    if (image.complete && image.naturalWidth === 0) markPhotoMissing();
+  });
 
   // Add a quiet visual state to the sticky header after the first scroll.
   const updateHeader = () => {
