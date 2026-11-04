@@ -1726,3 +1726,9 @@ textarea.form-control { min-height: 145px; resize: vertical; }
 .site-nav .mobile-menu-cta {
   display: none;
 }
+
+
+/* Keep the Lost Mode title clear of the sticky header when it is targeted. */
+#lost-mode-title {
+  scroll-margin-top: calc(var(--header-height) + 34px);
+}
