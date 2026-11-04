@@ -43,9 +43,9 @@
 
     // Never hide the navigation while its mobile menu is open or focused.
     const menuIsOpen = menuToggle?.getAttribute('aria-expanded') === 'true';
-    const headerHasFocus = header.contains(document.activeElement);
+    const headerHasKeyboardFocus = header.querySelector(':focus-visible') !== null;
 
-    if (currentScrollY <= 8 || menuIsOpen || headerHasFocus) {
+    if (currentScrollY <= 8 || menuIsOpen || headerHasKeyboardFocus) {
       showHeader();
     } else if (currentScrollY > lastScrollY + 5) {
       header.classList.add('is-hidden');
