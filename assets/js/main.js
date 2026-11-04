@@ -27,11 +27,40 @@
     if (image.complete && image.naturalWidth === 0) markPhotoMissing();
   });
 
-  // Add a quiet visual state to the sticky header after the first scroll.
+  // Keep the sticky header out of the way while reading down the page.
+  // Reveal it again as soon as the visitor scrolls upward.
+  let lastScrollY = window.scrollY;
+  const showHeader = () => {
+    if (!header) return;
+    header.classList.remove('is-hidden');
+  };
+
   const updateHeader = () => {
     if (!header) return;
-    header.classList.toggle('is-scrolled', window.scrollY > 8);
+
+    const currentScrollY = Math.max(0, window.scrollY);
+    header.classList.toggle('is-scrolled', currentScrollY > 8);
+
+    // Never hide the navigation while its mobile menu is open or focused.
+    const menuIsOpen = menuToggle?.getAttribute('aria-expanded') === 'true';
+    const headerHasFocus = header.contains(document.activeElement);
+
+    if (currentScrollY <= 8 || menuIsOpen || headerHasFocus) {
+      showHeader();
+    } else if (currentScrollY > lastScrollY + 5) {
+      header.classList.add('is-hidden');
+    } else if (currentScrollY < lastScrollY - 5) {
+      showHeader();
+    }
+
+    lastScrollY = currentScrollY;
   };
+
+  if (header) {
+    header.addEventListener('focusin', showHeader);
+    header.addEventListener('pointerenter', showHeader);
+  }
+
   updateHeader();
   window.addEventListener('scroll', updateHeader, { passive: true });
 
