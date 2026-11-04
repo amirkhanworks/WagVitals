@@ -1719,3 +1719,10 @@ textarea.form-control { min-height: 145px; resize: vertical; }
   box-shadow: 0 0 0 1000px var(--color-white) inset;
   caret-color: var(--color-ink);
 }
+
+
+/* The header CTA is the single persistent waitlist action.
+   Keep the duplicate CTA inside the mobile navigation hidden. */
+.site-nav .mobile-menu-cta {
+  display: none;
+}
