@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/WagVitals/">
   <meta name="theme-color" content="#FBF5EE">
+  <link rel="icon" href="assets/img/brand/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="assets/img/brand/favicon-32.png?v=2" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/img/brand/favicon-16.png?v=2" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png?v=2" sizes="180x180">
   <title>Page not found — WagVitals India</title>
   <meta name="robots" content="noindex, follow">
   <meta name="description" content="This page wandered off. Return to the WagVitals India home page.">
@@ -13,16 +17,17 @@
   <meta property="og:locale" content="en_IN">
   <meta property="og:title" content="Page not found — WagVitals India">
   <meta property="og:description" content="This page wandered off. Return to the WagVitals India home page.">
-  <meta property="og:image" content="https://amirkhanworks.github.io/WagVitals/assets/img/logo.png">
+  <meta property="og:image" content="https://amirkhanworks.github.io/WagVitals/assets/img/brand/og-image.png">
   <meta property="og:image:type" content="image/png">
-  <meta property="og:image:alt" content="WagVitals dog logo and wordmark">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="WagVitals logo">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Page not found — WagVitals India">
   <meta name="twitter:description" content="This page wandered off. Return to the WagVitals India home page.">
-  <meta name="twitter:image" content="https://amirkhanworks.github.io/WagVitals/assets/img/logo.png">
-  <meta name="twitter:image:alt" content="WagVitals dog logo and wordmark">
-  <link rel="icon" type="image/png" href="assets/img/favicon.png">
-  <link rel="apple-touch-icon" href="assets/img/favicon.png">
+  <meta name="twitter:image" content="https://amirkhanworks.github.io/WagVitals/assets/img/brand/og-image.png">
+  <meta name="twitter:image:alt" content="WagVitals logo">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
@@ -33,8 +38,8 @@
   <a class="skip-link" href="/WagVitals/#main-content">Skip to content</a>
   <header class="site-header" data-site-header>
     <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="WagVitals India home">
-        <img src="assets/img/logo.png" alt="WagVitals — Smart care. Happy life." width="240" height="245">
+      <a class="brand brand--header" href="index.html" aria-label="WagVitals home">
+        <img src="assets/img/brand/logo-horizontal.svg?v=2" alt="WagVitals home" width="182" height="32">
       </a>
 
       <nav class="site-nav" id="primary-navigation" aria-label="Main navigation" data-site-nav>
@@ -58,6 +63,7 @@
   <main id="main-content" tabindex="-1">
     <section class="not-found section section--cream" aria-labelledby="not-found-title">
       <div class="container not-found-inner reveal">
+        <a class="brand brand--404" href="index.html" aria-label="WagVitals home"><img src="assets/img/brand/logo-stacked.svg?v=2" alt="WagVitals" width="129" height="96"></a>
         <span class="eyebrow">404 · Page not found</span>
         <h1 id="not-found-title">This page wandered off.</h1>
         <p class="lead">The page you're looking for isn't here. Let's get you back home.</p>
@@ -69,18 +75,14 @@
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <a class="brand" href="index.html" aria-label="WagVitals India home">
-            <img src="assets/img/logo.png" alt="WagVitals — Smart care. Happy life." width="240" height="245" loading="lazy">
+          <a class="brand brand--footer" href="index.html" aria-label="WagVitals home">
+            <img src="assets/img/brand/logo-stacked.svg?v=2" alt="WagVitals" width="92" height="68" loading="lazy">
           </a>
-          <p>Smart care. Happy life.</p>
+          <p></p>
 
           <ul class="footer-social" aria-label="Social and contact links">
-            <li><a href="{{INSTAGRAM_URL}}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>
-            </a></li>
-            <li><a href="{{LINKEDIN_URL}}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.2 8.6H2.1V22h3.1V8.6ZM3.65 2A1.8 1.8 0 1 0 3.7 5.6 1.8 1.8 0 0 0 3.65 2ZM22 13.8c0-4.03-2.15-5.9-5.02-5.9a4.33 4.33 0 0 0-3.9 2.15V8.6H10V22h3.1v-7.1c0-1.87.36-3.68 2.67-3.68 2.28 0 2.31 2.14 2.31 3.8V22H22v-8.2Z"/></svg>
-            </a></li>
+            <!-- Instagram link hidden until the official URL is supplied. -->
+            <!-- LinkedIn link hidden until the official URL is supplied. -->
             <!-- Number supplied as {+918446244214}; wa.me URI uses digits without braces or plus sign. -->
             <li><a href="https://wa.me/918446244214" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.3 11.8a8.3 8.3 0 0 1-12.3 7.3L3 20l1-4.7a8.3 8.3 0 1 1 16.3-3.5Z"/><path d="M8.5 8.3c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4-.1.6l-.5.6c-.2.2-.2.4 0 .6.5.9 1.2 1.6 2.1 2.1.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.5.7c.3.1.4.3.4.5 0 .3-.2 1.1-.7 1.5-.5.5-1.1.7-1.8.6-1-.1-2.2-.7-3.5-1.8-1.4-1.2-2.3-2.7-2.5-3.7-.2-.8.1-1.6.5-2.3Z"/></svg>
