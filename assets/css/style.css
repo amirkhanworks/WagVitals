@@ -211,6 +211,19 @@ p { margin-bottom: 1.2em; }
   width: 100%;
   height: auto;
 }
+
+/* Keep the header logo within the intended navigation height.
+   The footer logo retains its original display size. */
+.header-inner > .brand {
+  width: 82px;
+  min-width: 82px;
+}
+
+/* Blend the supplied cream-matte PNG into the translucent ivory header.
+   The logo artwork and source image remain unchanged. */
+.site-header .brand img {
+  mix-blend-mode: multiply;
+}
 .site-nav {
   display: flex;
   align-items: center;
@@ -688,6 +701,7 @@ textarea.form-control { min-height: 145px; resize: vertical; }
   .container { width: min(calc(100% - 40px), var(--content-width)); }
   .header-inner { gap: 14px; }
   .brand { width: 92px; min-width: 92px; }
+  .header-inner > .brand { width: 70px; min-width: 70px; }
   .header-cta { display: inline-flex; flex: 0 0 auto; white-space: nowrap; }
   .menu-toggle { display: inline-flex; }
   .site-nav {
@@ -1737,4 +1751,10 @@ textarea.form-control { min-height: 145px; resize: vertical; }
 /* Keep the Lost Mode title clear of the sticky header when it is targeted. */
 #lost-mode-title {
   scroll-margin-top: calc(var(--header-height) + 34px);
+}
+
+
+/* Reduce the visual gap before the How It Works section. */
+.how-it-works {
+  padding-top: clamp(64px, 7vw, 88px);
 }
