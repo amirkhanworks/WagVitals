@@ -1651,3 +1651,47 @@ textarea.form-control { min-height: 145px; resize: vertical; }
     font-size: 1rem;
   }
 }
+
+
+/* Technical QA refinements: project hosting, tap targets and Safari resilience. */
+
+/* Keep the header legible when backdrop-filter is unavailable. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header,
+  .site-header.is-scrolled {
+    background: #FBF5EE;
+  }
+}
+
+/* Aim for comfortable 44px minimum interactive areas on touch devices. */
+.text-link {
+  min-height: 44px;
+}
+
+.credibility-inner a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+}
+
+.footer-nav a,
+.footer-legal a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+}
+
+.footer-social a {
+  width: 44px;
+  height: 44px;
+}
+
+/* Preserve the site's input colours when Safari applies autofill styling. */
+.form-control:-webkit-autofill,
+.form-control:-webkit-autofill:hover,
+.form-control:-webkit-autofill:focus,
+.form-control:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--color-ink);
+  box-shadow: 0 0 0 1000px var(--color-white) inset;
+  caret-color: var(--color-ink);
+}
