@@ -740,7 +740,12 @@ textarea.form-control { min-height: 145px; resize: vertical; }
     height: calc(100vh - var(--header-height));
     height: calc(100dvh - var(--header-height));
     overflow-y: auto;
-    display: none;
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity .22s ease, transform .22s ease, visibility .22s;
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
@@ -751,7 +756,12 @@ textarea.form-control { min-height: 145px; resize: vertical; }
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
   }
-  .site-nav.is-open { display: flex; }
+  .site-nav.is-open {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
   .nav-links { display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
   .nav-links a {
     min-height: 62px;
@@ -1851,5 +1861,18 @@ textarea.form-control { min-height: 145px; resize: vertical; }
   .lost-mode-grid > .reveal:last-child {
     grid-column: 1;
     grid-row: 1;
+  }
+}
+
+/* Native disclosure remains keyboard-operable; animate its panel where supported. */
+@supports (interpolate-size: allow-keywords) {
+  html { interpolate-size: allow-keywords; }
+  .faq-item::details-content {
+    height: 0;
+    overflow: clip;
+    transition: height .24s ease;
+  }
+  .faq-item[open]::details-content {
+    height: auto;
   }
 }
